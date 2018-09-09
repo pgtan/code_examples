@@ -1,0 +1,32 @@
+#! /usr/bin/bc -l
+# Project Euler 14, find longest Collatz sequence 
+
+steps_max=0
+num_max=0
+
+define void collatz_max_update (num1,steps) {
+  if (steps_max < steps) { num_max = num1 ; steps_max = steps  }
+}
+
+define void collatz_seq (num,steps,num1) {
+  # auto next_num
+  if (num == 1) { collatz_max_update (num1,steps)
+  # print num_max,"<\t>",steps_max,"\n"
+  } else  {
+  if (num % 2 == 0) next_num = num / 2   else next_num = 3 * num + 1
+  collatz_seq (next_num,++steps,num1) 
+  }
+}
+
+for (i=500001;i<1000000;i+=2) {
+  collatz_reminder = i % 9
+  if (!(reminder==2 || reminder==4 || reminder==5 || reminder==8))
+  collatz_seq(i,0,i)
+}
+
+print "Number: ",num_max,"\t","Steps: ",steps_max,"\n"
+
+
+quit
+
+		
