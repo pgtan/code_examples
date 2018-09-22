@@ -1,0 +1,15 @@
+#! /usr/bin/bc -q
+define euler15 () {
+  auto num,len,i,sum,rem;
+  num = 2 ^ 1000;
+  len = length(num);
+  sum = 0;
+  rem = 0;
+  for ( i = 0 ; i < len ; ++ i ) {
+    rem = num % 10;
+    sum += rem;
+    num = (num - rem) / 10;
+  }
+  return ( sum );
+}
+euler15() ; halt
